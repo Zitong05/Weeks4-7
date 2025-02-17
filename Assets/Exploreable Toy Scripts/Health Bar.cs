@@ -30,4 +30,10 @@ public class HealthBar : MonoBehaviour
         health -= damage;
         enemyhealth.value = health;
     }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
+
 }
