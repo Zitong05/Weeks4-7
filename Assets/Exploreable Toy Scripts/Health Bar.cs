@@ -5,35 +5,26 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public float health = 5;
     public Slider enemyhealth;
     // Start is called before the first frame update
     void Start()
     {
-        float clampedValue = Mathf.Clamp(health, 0f, 5f);
-        enemyhealth.minValue = 0;
+        
+    }
+    // Update is called once per frame
+    void Update()
+    {
+       
+    }
+    public void SetMaxHealth(int health)
+    {
         enemyhealth.maxValue = health;
         enemyhealth.value = health;
     }
 
-    // Update is called once per frame
-    void Update()
+    // 设置当前血量
+    public void SetHealth(int health)
     {
-        //if ()
-        //{
-        //    TakeDamage(1)
-        //}
-    }
-
-    public void TakeDamage(float damage)
-    {
-        health -= damage;
         enemyhealth.value = health;
     }
-
-    private void Die()
-    {
-        Destroy(gameObject);
-    }
-
 }
