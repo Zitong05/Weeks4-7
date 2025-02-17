@@ -19,10 +19,10 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ()
-        {
-            TakeDamage(1)
-        }
+        //if ()
+        //{
+        //    TakeDamage(1)
+        //}
     }
 
     public void TakeDamage(float damage)
