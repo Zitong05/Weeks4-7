@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ArrowSpawner : MonoBehaviour
 {
-    
+    public GameObject arrowPrefab; // Prefab of the arrow to spawn
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -17,5 +17,8 @@ public class ArrowSpawner : MonoBehaviour
         
     }
 
-    
+    public void SpawnArrow()
+    {
+        Instantiate(arrowPrefab, transform.position, transform.rotation); // Spawn the arrow at the spawner's position and rotation
+    }
 }

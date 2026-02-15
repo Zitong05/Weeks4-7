@@ -1,9 +1,18 @@
 using UnityEngine;
 
-public class BallGravity : MonoBehaviour
+public class Ball : MonoBehaviour
 {
-    float gravity = -9.81f; // Gravity
-    Vector3 velocity; // Current velocity of the ball
+    
+    public static Ball CurrentBall;
+
+    void OnEnable()
+    {
+        CurrentBall = this;
+    }
+
+    float gravity = 2.5f;
+    Vector3 velocity;
+    public float scoreValue = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,9 +23,18 @@ public class BallGravity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        velocity.y += gravity * Time.deltaTime; // Apply gravity to the vertical velocity
-        transform.position += velocity *  Time.deltaTime; // Move the ball based on its velocity
+        float dt = Time.deltaTime;
 
+        velocity.y -= gravity * dt;
+
+        transform.position += velocity * dt;
+
+        scoreValue += Time.deltaTime;
     }
+
+    public void AddForce(Vector3 force)
+    {
+        velocity += force;
+    }
+
 }

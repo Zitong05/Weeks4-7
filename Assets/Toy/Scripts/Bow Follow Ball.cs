@@ -3,6 +3,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BowFollowBall : MonoBehaviour
 {
+    public BallSpawner ballSpawner;
     public Transform ball;
     Vector3 direction;
     
@@ -16,7 +17,8 @@ public class BowFollowBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = ball.position - transform.position;
+        Vector3 Ball = ballSpawner.spawnedBall.transform.position;
+        direction = Ball - transform.position;
         transform.up = direction;
     }
 }

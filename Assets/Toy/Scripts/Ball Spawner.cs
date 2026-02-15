@@ -22,16 +22,19 @@ public class BallSpawner : MonoBehaviour
         Ball = spawnedBall.transform;
 
         Vector2 screenPos = Camera.main.WorldToScreenPoint(Ball.position);
-        if (screenPos.y < 0)
+
+        for (int i = 0; i < balls.Count; i++)
         {
-            Destroy(spawnedBall);
-            balls.Remove(spawnedBall);
-            spawnedBall = Instantiate(ballPrefab, new Vector3(0, 5, 0), Quaternion.identity);
+            if (screenPos.y < 0)
+            {
+
+                Destroy(spawnedBall);
+                balls.Remove(spawnedBall);
+                spawnedBall = Instantiate(ballPrefab, new Vector3(0, 5, 0), Quaternion.identity);
                 balls.Add(spawnedBall);
-                Debug.Log("Ball is below the ground, respawn");
-            
                 
-            
+            }
         }
+        
     }
 }
