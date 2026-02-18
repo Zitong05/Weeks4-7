@@ -3,11 +3,14 @@ using UnityEngine.Events;
 
 public class ContactSensor : MonoBehaviour
 {
-    public SpriteRenderer hazard;
-    public bool isInHazard = false;
+    public SpriteRenderer pushable;
+    public bool isPush = false;
     public UnityEvent OnEnterSensor;
     public UnityEvent OnExitSensor;
     public UnityEvent<float> OnRandomNumber;
+
+    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,24 +20,27 @@ public class ContactSensor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hazard.bounds.Contains(transform.position) == true)
+        Vector3 direction = pushable.transform.position - transform.position;
+
+        if (pushable.bounds.Contains(transform.position) == true)
         {
-            if (isInHazard == true)
+            if (isPush == true)
             {
-                //still in the hazard
+                //still pushing
             }
             else
             {
                 OnEnterSensor.Invoke();
-                isInHazard = true;
+                
+                pushable.transform.position += direction;
             }
         }
         else
         {
-            if (isInHazard == true)
+            if (isPush == true)
             {
                 OnExitSensor.Invoke();
-                isInHazard = false;
+                isPush = false;
                 OnRandomNumber.Invoke(Random.Range(0, 10));
             }
             else 
